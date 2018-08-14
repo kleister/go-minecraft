@@ -7,8 +7,6 @@
 [![Go Doc](https://godoc.org/github.com/kleister/go-minecraft?status.svg)](http://godoc.org/github.com/kleister/go-minecraft)
 [![Go Report](http://goreportcard.com/badge/github.com/kleister/go-minecraft)](http://goreportcard.com/report/github.com/kleister/go-minecraft)
 
-**This project is under heavy development, it's not in a working state yet!**
-
 This repository will provides helpers related to Minecraft.
 
 
