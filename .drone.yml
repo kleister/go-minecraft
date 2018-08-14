@@ -1,0 +1,123 @@
+workspace:
+  base: /srv/app
+  path: src/github.com/kleister/go-minecraft
+
+branches:
+  - master
+
+pipeline:
+  cache-restore:
+    image: plugins/s3-cache:1
+    pull: true
+    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
+    restore: true
+    when:
+      local: false
+
+  lib-prepare:
+    image: webhippie/golang:edge
+    pull: true
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make clean
+      - make retool
+      - make sync
+      - make generate
+
+  lib-vet:
+    image: webhippie/golang:edge
+    pull: true
+    group: app
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make vet
+
+  lib-check:
+    image: webhippie/golang:edge
+    pull: true
+    group: app
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make megacheck
+
+  lib-lint:
+    image: webhippie/golang:edge
+    pull: true
+    group: app
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make lint
+
+  lib-test:
+    image: webhippie/golang:edge
+    pull: true
+    group: app
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make test
+
+  lib-build:
+    image: webhippie/golang:edge
+    pull: true
+    group: app
+    environment:
+      - CGO_ENABLED=0
+      - GOPATH=/srv/app
+      - TAGS=
+    commands:
+      - make build
+
+  lib-coverage:
+    image: plugins/codacy:1
+    pull: true
+    secrets: [ codacy_token ]
+    when:
+      local: false
+
+  cache-rebuild:
+    image: plugins/s3-cache:1
+    pull: true
+    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
+    rebuild: true
+    mount:
+      - vendor/
+      - _tools/
+    when:
+      local: false
+      event: [ push ]
+      branch: master
+
+  cache-flush:
+    image: plugins/s3-cache:1
+    pull: true
+    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
+    flush: true
+    flush_age: 14
+    when:
+      local: false
+      event: [ push ]
+      branch: master
+
+  notify-matrix:
+    image: plugins/matrix:1
+    pull: true
+    secrets: [ matrix_roomid, matrix_username, matrix_password ]
+    when:
+      local: false
+      events: [ push, tag ]
+      status: [ changed, failure ]
