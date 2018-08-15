@@ -3,6 +3,12 @@ package version
 import (
 	"github.com/json-iterator/go"
 	"github.com/kleister/go-minecraft/version/internal"
+	"github.com/mcuadros/go-version"
+)
+
+var (
+	// OldestMinecraft defines the oldest allowed Minecraft version.
+	OldestMinecraft = "1.6.4"
 )
 
 // Response is the standard root element for the version list.
@@ -19,19 +25,21 @@ func (r *Response) UnmarshalJSON(b []byte) error {
 		return err
 	}
 
-	for _, version := range result.Versions {
+	for _, row := range result.Versions {
 		v := Version{
-			ID:      version.ID,
-			URL:     version.URL,
-			Release: version.ReleaseTime,
+			ID:      row.ID,
+			URL:     row.URL,
+			Release: row.ReleaseTime,
 		}
 
-		switch version.Type {
+		switch row.Type {
 		case "release":
-			v.Latest = result.Latest.Release == version.ID
-			r.Releases = append(r.Releases, v)
+			if version.Compare(row.ID, OldestMinecraft, ">") {
+				v.Latest = result.Latest.Release == row.ID
+				r.Releases = append(r.Releases, v)
+			}
 		case "snapshot":
-			v.Latest = result.Latest.Snapshot == version.ID
+			v.Latest = result.Latest.Snapshot == row.ID
 			r.Snapshots = append(r.Snapshots, v)
 		}
 	}

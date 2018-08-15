@@ -30,21 +30,53 @@ make retool sync clean generate test
 package main
 
 import (
-	"log"
+	"fmt"
+	"os"
 
 	"github.com/kleister/go-minecraft/version"
 )
 
 func main() {
-	log.Println("Fetching Minecraft versions...")
+	fmt.Println("Fetching Minecraft versions...")
 	minecraft, err := version.FromDefault()
 
 	if err != nil {
-		log.Fatalln(err)
+		fmt.Println("Error:", err)
+		os.Exit(1)
 	}
 
 	for _, version := range minecraft.Releases {
-		log.Println("Minecraft v", version.ID)
+		fmt.Println(version.ID)
+	}
+}
+```
+
+### Sort Minecraft versions by ID
+
+[embedmd]:# (examples/sorted/main.go go)
+```go
+package main
+
+import (
+	"fmt"
+	"os"
+
+	"github.com/kleister/go-minecraft/version"
+)
+
+func main() {
+	fmt.Println("Fetching Minecraft versions...")
+	minecraft, err := version.FromDefault()
+
+	if err != nil {
+		fmt.Println("Error:", err)
+		os.Exit(1)
+	}
+
+	version.ByID(minecraft.Releases).Sort()
+
+	for _, version := range minecraft.Releases {
+		fmt.Println(version.ID)
 	}
 }
 ```
