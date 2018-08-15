@@ -34,11 +34,11 @@ func main() {
 	minecraft, err := version.FromDefault()
 
 	if err != nil {
-		log.Fatalf("%s", err)
+		log.Fatalln(err)
 	}
 
 	for _, version := range minecraft.Releases {
-		log.Printf("Minecraft v%s", version.ID)
+		log.Println("Minecraft v", version.ID)
 	}
 }
 ```
