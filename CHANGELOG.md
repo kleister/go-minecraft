@@ -5,10 +5,12 @@
 ### Added
 
 * Proper development notes within readme
+* Integrated sortable interface for versions
 
 ### Changed
 
 * Better formatting within versions example
+* Limit version list to Minecraft >1.6.4
 
 ### Removed
 

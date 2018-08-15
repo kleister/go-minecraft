@@ -16,6 +16,8 @@ func main() {
 		os.Exit(1)
 	}
 
+	version.ByVersion(minecraft.Releases).Sort()
+
 	for _, version := range minecraft.Releases {
 		fmt.Println(version.ID)
 	}
