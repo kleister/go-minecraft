@@ -18,7 +18,7 @@ func FromString(content []byte) (Response, error) {
 	result := Response{}
 
 	if err := jsoniter.Unmarshal(content, &result); err != nil {
-		return Response{}, errors.Wrap(err, "failed to parse versions")
+		return nil, errors.Wrap(err, "failed to parse versions")
 	}
 
 	return result, nil
@@ -29,7 +29,7 @@ func FromURL(path string) (Response, error) {
 	resp, err := http.Get(path)
 
 	if err != nil {
-		return Response{}, errors.Wrap(err, "failed to fetch versions")
+		return nil, errors.Wrap(err, "failed to fetch versions")
 	}
 
 	defer resp.Body.Close()
@@ -37,7 +37,7 @@ func FromURL(path string) (Response, error) {
 	body, err := ioutil.ReadAll(resp.Body)
 
 	if err != nil {
-		return Response{}, errors.Wrap(err, "failed to read versions")
+		return nil, errors.Wrap(err, "failed to read versions")
 	}
 
 	return FromString(body)
@@ -48,7 +48,7 @@ func FromPath(path string) (Response, error) {
 	body, err := ioutil.ReadFile(path)
 
 	if err != nil {
-		return Response{}, errors.Wrap(err, "failed to read versions")
+		return nil, errors.Wrap(err, "failed to read versions")
 	}
 
 	return FromString(body)
