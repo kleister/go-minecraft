@@ -6,6 +6,7 @@
 
 * Proper development notes within readme
 * Integrated sortable interface for versions
+* Filter versions by version constraints
 
 ### Changed
 
