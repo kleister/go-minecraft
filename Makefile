@@ -1,14 +1,15 @@
 NAME := go-minecraft
 IMPORT := github.com/kleister/$(NAME)
+SHELL := bash
 
 ifeq ($(OS), Windows_NT)
-	HAS_RETOOL := $(shell where retool)
+	HAS_GORUNPKG := $(shell where gorunpkg)
 else
-	HAS_RETOOL := $(shell command -v retool)
+	HAS_GORUNPKG := $(shell command -v gorunpkg)
 endif
 
-PACKAGES ?= $(shell go list ./... | grep -v /vendor/ | grep -v /_tools/)
-SOURCES ?= $(shell find . -name "*.go" -type f -not -path "./vendor/*" -not -path "./_tools/*")
+PACKAGES ?= $(shell go list ./... | grep -v /vendor/)
+SOURCES ?= $(shell find . -name "*.go" -type f -not -path "./vendor/*")
 GENERATE ?= $(PACKAGES)
 
 TAGS ?=
@@ -17,13 +18,9 @@ LDFLAGS += -s -w
 .PHONY: all
 all: build
 
-.PHONY: update
-update:
-	retool do dep ensure -update
-
 .PHONY: sync
 sync:
-	retool do dep ensure
+	go mod download
 
 .PHONY: clean
 clean:
@@ -38,33 +35,31 @@ vet:
 	go vet $(PACKAGES)
 
 .PHONY: megacheck
-megacheck:
-	retool do megacheck -tags '$(TAGS)' $(PACKAGES)
+megacheck: gorunpkg
+	gorunpkg honnef.co/go/tools/cmd/megacheck -tags '$(TAGS)' $(PACKAGES)
 
 .PHONY: lint
-lint:
-	for PKG in $(PACKAGES); do retool do golint -set_exit_status $$PKG || exit 1; done;
+lint: gorunpkg
+	for PKG in $(PACKAGES); do gorunpkg github.com/golang/lint/golint -set_exit_status $$PKG || exit 1; done;
 
 .PHONY: generate
-generate:
-	retool do go generate $(GENERATE)
+generate: gorunpkg
+	go generate $(GENERATE)
 
 .PHONY: embedmd
-embedmd:
-	retool do embedmd -w README.md
+embedmd: gorunpkg
+	gorunpkg github.com/campoy/embedmd -w README.md
 
 .PHONY: test
-test:
-	retool do goverage -v -coverprofile coverage.out $(PACKAGES)
+test: gorunpkg
+	gorunpkg github.com/haya14busa/goverage -v -coverprofile coverage.out $(PACKAGES)
 
 .PHONY: build
 build: $(SOURCES)
 	go build -i -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' ./version
 
-.PHONY: retool
-retool:
-ifndef HAS_RETOOL
-	go get -u github.com/twitchtv/retool
+.PHONY: gorunpkg
+gorunpkg:
+ifndef HAS_GORUNPKG
+	go get -u github.com/vektah/gorunpkg
 endif
-	retool sync
-	retool build

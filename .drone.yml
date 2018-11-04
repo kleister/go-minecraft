@@ -1,6 +1,6 @@
 workspace:
   base: /srv/app
-  path: src/github.com/kleister/go-minecraft
+  path: go-minecraft
 
 branches:
   - master
@@ -15,69 +15,63 @@ pipeline:
       local: false
 
   lib-prepare:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
-      - make clean
-      - make retool
       - make sync
+      - make gorunpkg
+      - make clean
       - make generate
 
   lib-vet:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     group: app
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
       - make vet
 
   lib-check:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     group: app
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
       - make megacheck
 
   lib-lint:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     group: app
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
       - make lint
 
   lib-test:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     group: app
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
       - make test
 
   lib-build:
-    image: webhippie/golang:edge
+    image: webhippie/golang:1.11
     pull: true
     group: app
     environment:
-      - CGO_ENABLED=0
-      - GOPATH=/srv/app
+      - GOCACHE=/srv/app/go-forge/cache
       - TAGS=
     commands:
       - make build
@@ -95,8 +89,7 @@ pipeline:
     secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
     rebuild: true
     mount:
-      - vendor/
-      - _tools/
+      - cache/
     when:
       local: false
       event: [ push ]

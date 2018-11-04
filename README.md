@@ -12,12 +12,12 @@ This repository will provides helpers related to Minecraft.
 
 ## Development
 
-Make sure you have a working Go environment, for further reference or a guide take a look at the [install instructions](http://golang.org/doc/install.html). This project requires Go >= v1.8. It is also possible to just simply execute the `go get github.com/kleister/go-minecraft/...` command, but we prefer to use our `Makefile`:
+Make sure you have a working Go environment, for further reference or a guide take a look at the [install instructions](http://golang.org/doc/install.html). This project requires Go >= v1.11 because we are using Go modules. It is also possible to just simply execute the `go get github.com/kleister/go-minecraft/...` command, but we prefer to use our `Makefile`:
 
 ```bash
 go get -d github.com/kleister/go-minecraft/...
 cd $GOPATH/src/github.com/kleister/go-minecraft
-make retool sync clean generate test
+make sync gorunpkg clean generate test
 ```
 
 
