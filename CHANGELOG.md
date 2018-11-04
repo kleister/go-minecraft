@@ -1,6 +1,13 @@
 # Changelog
 
-## [Unreleased]
+## [0.2.1] - 2018-11-04
+
+### Changed
+
+* Use stdlib JSON parser instead of jsoniter
+* Use go modules instead of dep
+
+## [0.2.0] - 2018-08-15
 
 ### Added
 
