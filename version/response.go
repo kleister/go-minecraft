@@ -1,7 +1,8 @@
 package version
 
 import (
-	"github.com/json-iterator/go"
+	"encoding/json"
+
 	"github.com/kleister/go-minecraft/version/internal"
 	"github.com/mcuadros/go-version"
 )
@@ -21,7 +22,7 @@ type Response struct {
 func (r *Response) UnmarshalJSON(b []byte) error {
 	result := internal.Root{}
 
-	if err := jsoniter.Unmarshal(b, &result); err != nil {
+	if err := json.Unmarshal(b, &result); err != nil {
 		return err
 	}
 
