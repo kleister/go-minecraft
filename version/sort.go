@@ -1,8 +1,9 @@
 package version
 
 import (
-	"github.com/mcuadros/go-version"
 	"sort"
+
+	"github.com/mcuadros/go-version"
 )
 
 // ByVersion sorts a list of Minecraft versions by ID.

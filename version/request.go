@@ -1,10 +1,10 @@
 package version
 
 import (
+	"encoding/json"
 	"io/ioutil"
 	"net/http"
 
-	"github.com/json-iterator/go"
 	"github.com/pkg/errors"
 )
 
@@ -17,7 +17,7 @@ const (
 func FromString(content []byte) (Response, error) {
 	result := Response{}
 
-	if err := jsoniter.Unmarshal(content, &result); err != nil {
+	if err := json.Unmarshal(content, &result); err != nil {
 		return Response{}, errors.Wrap(err, "failed to parse versions")
 	}
 
