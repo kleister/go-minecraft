@@ -18,7 +18,7 @@ pipeline:
     image: webhippie/golang:1.11
     pull: true
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make sync
@@ -31,7 +31,7 @@ pipeline:
     pull: true
     group: app
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make vet
@@ -41,7 +41,7 @@ pipeline:
     pull: true
     group: app
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make megacheck
@@ -51,7 +51,7 @@ pipeline:
     pull: true
     group: app
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make lint
@@ -61,7 +61,7 @@ pipeline:
     pull: true
     group: app
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make test
@@ -71,7 +71,7 @@ pipeline:
     pull: true
     group: app
     environment:
-      - GOCACHE=/srv/app/go-forge/cache
+      - GOCACHE=/srv/app/go-minecraft/cache
       - TAGS=
     commands:
       - make build
