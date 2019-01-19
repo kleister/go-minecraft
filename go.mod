@@ -2,7 +2,7 @@ module github.com/kleister/go-minecraft
 
 require (
 	github.com/campoy/embedmd v0.0.0-20171205015432-c59ce00e0296 // indirect
-	github.com/golang/lint v0.0.0-20181026193005-c67002cb31c3 // indirect
+	github.com/golang/lint v0.0.0-20190119083922-8f45f776aaf1 // indirect
 	github.com/haya14busa/goverage v0.0.0-20180129164344-eec3514a20b5 // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/mcuadros/go-version v0.0.0-20180611085657-6d5863ca60fa
