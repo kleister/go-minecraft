@@ -6,7 +6,7 @@ require (
 	github.com/haya14busa/goverage v0.0.0-20180129164344-eec3514a20b5 // indirect
 	github.com/kisielk/gotool v1.0.0 // indirect
 	github.com/mcuadros/go-version v0.0.0-20180611085657-6d5863ca60fa
-	github.com/pkg/errors v0.8.0
+	github.com/pkg/errors v0.8.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/vektah/gorunpkg v0.0.0-20181021090735-2c603e7a186c // indirect
 	golang.org/x/lint v0.0.0-20181026193005-c67002cb31c3 // indirect
