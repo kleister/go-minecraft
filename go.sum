@@ -1,5 +1,6 @@
 github.com/campoy/embedmd v0.0.0-20171205015432-c59ce00e0296 h1:tRsilif6pbtt+PX6uRoyGd+qR+4ZPucFZLHlc3Ak6z8=
 github.com/campoy/embedmd v0.0.0-20171205015432-c59ce00e0296/go.mod h1:/dBk8ICkslPCmyRdn4azP+QvBxL6Eg3EYxUGI9xMMFw=
+github.com/campoy/embedmd/v2 v2.0.0/go.mod h1:YJ3HmaI8Vzp7/afY+uNjQkUOjCDozCEB6k5i9vQDcPM=
 github.com/golang/lint v0.0.0-20181026193005-c67002cb31c3 h1:I4BOK3PBMjhWfQM2zPJKK7lOBGsrsvOB7kBELP33hiE=
 github.com/golang/lint v0.0.0-20181026193005-c67002cb31c3/go.mod h1:tluoj9z5200jBnyusfRPU2LqT6J+DAorxEvtC7LHB+E=
 github.com/golang/lint v0.0.0-20190119083922-8f45f776aaf1/go.mod h1:tluoj9z5200jBnyusfRPU2LqT6J+DAorxEvtC7LHB+E=
