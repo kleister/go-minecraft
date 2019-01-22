@@ -10,6 +10,6 @@ require (
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/vektah/gorunpkg v0.0.0-20181021090735-2c603e7a186c // indirect
 	golang.org/x/lint v0.0.0-20190119083934-8f45f776aaf1 // indirect
-	golang.org/x/tools v0.0.0-20190121085414-16909d206f00 // indirect
+	golang.org/x/tools v0.0.0-20190122164132-b2f184786440 // indirect
 	honnef.co/go/tools v0.0.0-20180920025451-e3ad64cb4ed3 // indirect
 )
