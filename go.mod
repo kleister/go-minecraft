@@ -9,7 +9,7 @@ require (
 	github.com/pkg/errors v0.8.1
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/vektah/gorunpkg v0.0.0-20190126035702-2aeb42363e48 // indirect
-	golang.org/x/lint v0.0.0-20190119083934-8f45f776aaf1 // indirect
+	golang.org/x/lint v0.0.0-20190409204316-959b441ac422 // indirect
 	golang.org/x/tools v0.0.0-20190208225528-3744606dbb67 // indirect
 	honnef.co/go/tools v0.0.0-20180920025451-e3ad64cb4ed3 // indirect
 )
