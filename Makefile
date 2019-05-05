@@ -34,13 +34,13 @@ fmt:
 vet:
 	go vet $(PACKAGES)
 
-.PHONY: megacheck
-megacheck: gorunpkg
-	gorunpkg honnef.co/go/tools/cmd/megacheck -tags '$(TAGS)' $(PACKAGES)
+.PHONY: staticcheck
+staticcheck: gorunpkg
+	gorunpkg honnef.co/go/tools/cmd/staticcheck -tags '$(TAGS)' $(PACKAGES)
 
 .PHONY: lint
 lint: gorunpkg
-	for PKG in $(PACKAGES); do gorunpkg github.com/golang/lint/golint -set_exit_status $$PKG || exit 1; done;
+	for PKG in $(PACKAGES); do gorunpkg golang.org/x/lint/golint -set_exit_status $$PKG || exit 1; done;
 
 .PHONY: generate
 generate: gorunpkg
@@ -56,7 +56,7 @@ test: gorunpkg
 
 .PHONY: build
 build: $(SOURCES)
-	go build -i -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' ./version
+	go build -i -v -tags '$(TAGS)' -ldflags '$(LDFLAGS)' -o /dev/null ./...
 
 .PHONY: gorunpkg
 gorunpkg:

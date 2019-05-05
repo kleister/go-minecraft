@@ -1,15 +1,12 @@
 module github.com/kleister/go-minecraft
 
 require (
-	github.com/campoy/embedmd/v2 v2.0.0 // indirect
-	github.com/golang/lint v0.0.0-20190119083922-8f45f776aaf1 // indirect
+	github.com/BurntSushi/toml v0.3.1 // indirect
+	github.com/campoy/embedmd v1.0.0 // indirect
 	github.com/haya14busa/goverage v0.0.0-20180129164344-eec3514a20b5 // indirect
-	github.com/kisielk/gotool v1.0.0 // indirect
-	github.com/mcuadros/go-version v0.0.0-20180611085657-6d5863ca60fa
+	github.com/mcuadros/go-version v0.0.0-20190308113854-92cdf37c5b75
 	github.com/pkg/errors v0.8.1
-	github.com/pmezard/go-difflib v1.0.0 // indirect
-	github.com/vektah/gorunpkg v0.0.0-20190126035702-2aeb42363e48 // indirect
-	golang.org/x/lint v0.0.0-20190119083934-8f45f776aaf1 // indirect
-	golang.org/x/tools v0.0.0-20190208225528-3744606dbb67 // indirect
-	honnef.co/go/tools v0.0.0-20180920025451-e3ad64cb4ed3 // indirect
+	golang.org/x/lint v0.0.0-20190409202823-959b441ac422 // indirect
+	golang.org/x/tools v0.0.0-20190503185657-3b6f9c0030f7 // indirect
+	honnef.co/go/tools v0.0.0-20190418001031-e561f6794a2a // indirect
 )

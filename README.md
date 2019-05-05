@@ -1,6 +1,6 @@
 # Library for Minecraft
 
-[![Build Status](http://drone.kleister.tech/api/badges/kleister/go-minecraft/status.svg)](http://drone.kleister.tech/kleister/go-minecraft)
+[![Build Status](http://cloud.drone.io/api/badges/kleister/go-minecraft/status.svg)](http://cloud.drone.io/kleister/go-minecraft)
 [![Stories in Ready](https://badge.waffle.io/kleister/kleister-api.svg?label=ready&title=Ready)](http://waffle.io/kleister/kleister-api)
 [![Join the Matrix chat at https://matrix.to/#/#kleister:matrix.org](https://img.shields.io/badge/matrix-%23kleister%3Amatrix.org-7bc9a4.svg)](https://matrix.to/#/#kleister:matrix.org)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/e96f91f1bce14e049a3d3db93baa4683)](https://www.codacy.com/app/kleister/go-minecraft?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=kleister/go-minecraft&amp;utm_campaign=Badge_Grade)

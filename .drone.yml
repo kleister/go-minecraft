@@ -1,116 +1,119 @@
-workspace:
-  base: /srv/app
-  path: go-minecraft
+---
+kind: pipeline
+name: testing
 
-branches:
-  - master
+platform:
+  os: linux
+  arch: amd64
 
-pipeline:
-  cache-restore:
-    image: plugins/s3-cache:1
-    pull: true
-    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
-    restore: true
-    when:
-      local: false
+steps:
+- name: prepare
+  image: webhippie/golang:1.11
+  pull: always
+  commands:
+  - make sync
+  - make gorunpkg
+  - make clean
+  - make generate
+  volumes:
+  - name: gopath
+    path: /srv/app
 
-  lib-prepare:
-    image: webhippie/golang:1.11
-    pull: true
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make sync
-      - make gorunpkg
-      - make clean
-      - make generate
+- name: vet
+  image: webhippie/golang:1.12
+  pull: always
+  commands:
+  - make vet
+  volumes:
+  - name: gopath
+    path: /srv/app
+  depends_on:
+  - prepare
 
-  lib-vet:
-    image: webhippie/golang:1.11
-    pull: true
-    group: app
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make vet
+- name: check
+  image: webhippie/golang:1.12
+  pull: always
+  commands:
+  - make staticcheck
+  volumes:
+  - name: gopath
+    path: /srv/app
+  depends_on:
+  - prepare
 
-  lib-check:
-    image: webhippie/golang:1.11
-    pull: true
-    group: app
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make megacheck
+- name: lint
+  image: webhippie/golang:1.12
+  pull: always
+  commands:
+  - make lint
+  volumes:
+  - name: gopath
+    path: /srv/app
+  depends_on:
+  - prepare
 
-  lib-lint:
-    image: webhippie/golang:1.11
-    pull: true
-    group: app
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make lint
+- name: test
+  image: webhippie/golang:1.12
+  pull: always
+  commands:
+  - make test
+  volumes:
+  - name: gopath
+    path: /srv/app
+  depends_on:
+  - prepare
 
-  lib-test:
-    image: webhippie/golang:1.11
-    pull: true
-    group: app
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make test
+- name: build
+  image: webhippie/golang:1.12
+  pull: always
+  commands:
+  - make build
+  volumes:
+  - name: gopath
+    path: /srv/app
+  depends_on:
+  - prepare
 
-  lib-build:
-    image: webhippie/golang:1.11
-    pull: true
-    group: app
-    environment:
-      - GOCACHE=/srv/app/go-minecraft/cache
-      - TAGS=
-    commands:
-      - make build
+- name: coverage
+  image: plugins/codacy:1
+  pull: always
+  settings:
+    token:
+      from_secret: codacy_token
+  depends_on:
+  - test
 
-  lib-coverage:
-    image: plugins/codacy:1
-    pull: true
-    secrets: [ codacy_token ]
-    when:
-      local: false
+- name: notify
+  image: plugins/matrix:1
+  pull: always
+  settings:
+    username:
+      from_secret: matrix_username
+    password:
+      from_secret: matrix_password
+    roomid:
+      from_secret: matrix_roomid
+  when:
+    event:
+    - push
+    - tag
+    status:
+    - failure
+  depends_on:
+  - prepare
+  - vet
+  - check
+  - lint
+  - test
+  - build
+  - coverage
 
-  cache-rebuild:
-    image: plugins/s3-cache:1
-    pull: true
-    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
-    rebuild: true
-    mount:
-      - cache/
-    when:
-      local: false
-      event: [ push ]
-      branch: master
+volumes:
+- name: gopath
+  temp: {}
 
-  cache-flush:
-    image: plugins/s3-cache:1
-    pull: true
-    secrets: [ cache_s3_endpoint, cache_s3_access_key, cache_s3_secret_key ]
-    flush: true
-    flush_age: 14
-    when:
-      local: false
-      event: [ push ]
-      branch: master
-
-  notify-matrix:
-    image: plugins/matrix:1
-    pull: true
-    secrets: [ matrix_roomid, matrix_username, matrix_password ]
-    when:
-      local: false
-      event: [ push, tag ]
-      status: [ changed, failure ]
+trigger:
+  ref:
+  - refs/heads/master
+  - refs/tags/**
+  - refs/pull/**

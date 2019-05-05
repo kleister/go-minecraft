@@ -1,5 +1,12 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+* Migrate to Drone Cloud and v1.x.x
+* Update dependencies to latest versions
+
 ## [0.2.1] - 2018-11-04
 
 ### Changed
