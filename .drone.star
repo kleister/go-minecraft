@@ -3,8 +3,8 @@ description = 'GitHub Exporter'
 def main(ctx):
   return [
     testing(ctx),
-    release(ctx),
     changelog(ctx),
+    release(ctx),
     notify(ctx),
   ]
 
