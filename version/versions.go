@@ -16,7 +16,9 @@ type Versions []Version
 func (v Versions) Filter(filter *Filter) Versions {
 	result := Versions{}
 
-	vc := version.NewConstrainGroupFromString(filter.Version)
+	vc := version.NewConstrainGroupFromString(
+		filter.Version,
+	)
 
 	for _, row := range v {
 		if filter.Version != "" {
