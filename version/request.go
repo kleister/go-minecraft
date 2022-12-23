@@ -2,8 +2,9 @@ package version
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
+	"os"
 
 	"github.com/pkg/errors"
 )
@@ -34,7 +35,7 @@ func FromURL(path string) (Response, error) {
 
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, err := io.ReadAll(resp.Body)
 
 	if err != nil {
 		return Response{}, errors.Wrap(err, "failed to read versions")
@@ -45,7 +46,7 @@ func FromURL(path string) (Response, error) {
 
 // FromPath parses a version definition from file path.
 func FromPath(path string) (Response, error) {
-	body, err := ioutil.ReadFile(path)
+	body, err := os.ReadFile(path)
 
 	if err != nil {
 		return Response{}, errors.Wrap(err, "failed to read versions")

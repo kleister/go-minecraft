@@ -4,11 +4,11 @@ SHELL := bash
 NAME := go-minecraft
 IMPORT := github.com/kleister/$(NAME)
 
-PACKAGES ?= $(shell go list ./... | grep -v /vendor/)
+GOBUILD ?= CGO_ENABLED=0 go build
+PACKAGES ?= $(shell go list ./...)
 SOURCES ?= $(shell find . -name "*.go" -type f)
-GENERATE ?= $(PACKAGES)
 
-TAGS ?=
+TAGS ?= netgo
 LDFLAGS += -s -w
 
 .PHONY: all
@@ -35,12 +35,12 @@ staticcheck: $(STATICCHECK)
 	$(STATICCHECK) -tags '$(TAGS)' $(PACKAGES)
 
 .PHONY: lint
-lint: $(GOLINT)
-	for PKG in $(PACKAGES); do $(GOLINT) -set_exit_status $$PKG || exit 1; done;
+lint: $(REVIVE)
+	for PKG in $(PACKAGES); do $(REVIVE) -config revive.toml -set_exit_status $$PKG || exit 1; done;
 
 .PHONY: generate
 generate:
-	go generate $(GENERATE)
+	go generate $(PACKAGES)
 
 .PHONY: changelog
 changelog: $(CALENS)
@@ -51,8 +51,8 @@ embedmd: $(EMBEDMD)
 	$(EMBEDMD) -w README.md
 
 .PHONY: test
-test: $(GOVERAGE)
-	$(GOVERAGE) -v -coverprofile coverage.out $(PACKAGES)
+test: test
+	go test -coverprofile coverage.out $(PACKAGES)
 
 .PHONY: build
 build: $(SOURCES)
