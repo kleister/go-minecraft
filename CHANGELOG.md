@@ -1,4 +1,14 @@
-# Changelog for 0.2.1
+# Changelog
+
+## [1.0.0](https://github.com/kleister/go-minecraft/compare/v0.2.1...v1.0.0) (2024-06-05)
+
+
+### Features
+
+* apply new repo structure and integrate automated releases ([94673a1](https://github.com/kleister/go-minecraft/commit/94673a1585cc1d7b6b3931b980933f092f034d19))
+* **major:** update actions/setup-go action to v4 ([#29](https://github.com/kleister/go-minecraft/issues/29)) ([a07b367](https://github.com/kleister/go-minecraft/commit/a07b367471a36cda5ab130ef2a21782e0601f9c3))
+
+for 0.2.1
 
 The following sections list the changes for 0.2.1.
 
@@ -64,5 +74,3 @@ The following sections list the changes for 0.1.0.
    Just prepared an initial basic version which could be released to the public.
 
    https://github.com/kleister/go-minecraft/issues/23
-
-
