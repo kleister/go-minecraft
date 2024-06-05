@@ -8,16 +8,17 @@
 * apply new repo structure and integrate automated releases ([94673a1](https://github.com/kleister/go-minecraft/commit/94673a1585cc1d7b6b3931b980933f092f034d19))
 * **major:** update actions/setup-go action to v4 ([#29](https://github.com/kleister/go-minecraft/issues/29)) ([a07b367](https://github.com/kleister/go-minecraft/commit/a07b367471a36cda5ab130ef2a21782e0601f9c3))
 
-for 0.2.1
+
+## [0.2.1]() (2020-12-13)
 
 The following sections list the changes for 0.2.1.
 
-## Summary
+### Summary
 
  * Chg #4: Use standard JSON parser instead of jsoniter
  * Enh #4: Switch to go modules instead of gopkg
 
-## Details
+### Details
 
  * Change #4: Use standard JSON parser instead of jsoniter
 
@@ -33,16 +34,16 @@ The following sections list the changes for 0.2.1.
    https://github.com/kleister/go-minecraft/pull/4
 
 
-# Changelog for 0.2.0
+## [0.2.0]() (2020-12-13)
 
 The following sections list the changes for 0.2.0.
 
-## Summary
+### Summary
 
  * Chg #3: Integrate the sortable interface
  * Chg #3: Integrate a version filter
 
-## Details
+### Details
 
  * Change #3: Integrate the sortable interface
 
@@ -59,15 +60,15 @@ The following sections list the changes for 0.2.0.
    https://github.com/kleister/go-minecraft/pull/3
 
 
-# Changelog for 0.1.0
+## [0.1.0]() (2020-12-13)
 
 The following sections list the changes for 0.1.0.
 
-## Summary
+### Summary
 
  * Chg #23: Initial release of basic version
 
-## Details
+### Details
 
  * Change #23: Initial release of basic version
 
