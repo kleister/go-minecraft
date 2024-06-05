@@ -29,7 +29,7 @@ jobs:
       - name: Run vet
         run: make vet
 
-      - name: Server golangci
+      - name: Run golangci
         run: make golangci
 
       - name: Run staticcheck
