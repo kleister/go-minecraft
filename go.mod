@@ -1,6 +1,6 @@
 module github.com/kleister/go-minecraft
 
-go 1.19
+go 1.18
 
 require (
 	github.com/mcuadros/go-version v0.0.0-20190830083331-035f6764e8d2 // indirect

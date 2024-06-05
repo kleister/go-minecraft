@@ -6,10 +6,11 @@ IMPORT := github.com/kleister/$(NAME)
 
 GOBUILD ?= CGO_ENABLED=0 go build
 PACKAGES ?= $(shell go list ./...)
-SOURCES ?= $(shell find . -name "*.go" -type f)
-
+SOURCES ?= $(shell find . -name "*.go" -type f -not -path */.devenv/* -not -path */.direnv/*)
+GENERATE ?= $(PACKAGES)
 TAGS ?= netgo
-LDFLAGS += -s -w
+
+LDFLAGS += -s -w -extldflags "-static"
 
 .PHONY: all
 all: build
@@ -30,6 +31,10 @@ fmt:
 vet:
 	go vet $(PACKAGES)
 
+.PHONY: golangci
+golangci: $(GOLANGCI_LINT)
+	$(GOLANGCI_LINT) run ./...
+
 .PHONY: staticcheck
 staticcheck: $(STATICCHECK)
 	$(STATICCHECK) -tags '$(TAGS)' $(PACKAGES)
@@ -40,18 +45,10 @@ lint: $(REVIVE)
 
 .PHONY: generate
 generate:
-	go generate $(PACKAGES)
-
-.PHONY: changelog
-changelog: $(CALENS)
-	$(CALENS) >| CHANGELOG.md
-
-.PHONY: embedmd
-embedmd: $(EMBEDMD)
-	$(EMBEDMD) -w README.md
+	go generate $(GENERATE)
 
 .PHONY: test
-test: test
+test:
 	go test -coverprofile coverage.out $(PACKAGES)
 
 .PHONY: build
