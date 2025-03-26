@@ -41,6 +41,9 @@ jobs:
       - name: Write buildtime
         run: date >| .github/RELEASE
 
+      - name: Update repo
+        run: git pull --rebase --autostash
+
       - name: Commit changes
         uses: EndBug/add-and-commit@v9
         with:

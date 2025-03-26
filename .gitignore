@@ -2,3 +2,4 @@
 .devenv/
 
 coverage.out
+.pre-commit-config.yaml

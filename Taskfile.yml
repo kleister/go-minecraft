@@ -1,0 +1,57 @@
+---
+version: "3.40"
+
+vars:
+  SOURCES:
+    sh: find . -name "*.go" -type f -not -path "./.devenv/*" -not -path "./.direnv/*" | xargs echo
+  PACKAGES:
+    sh: go list ./... | xargs echo
+
+tasks:
+  clean:
+    desc: Remove all temporary artifacts
+    cmds:
+      - go clean -i ./...
+
+  fmt:
+    desc: Run standard formatter
+    cmds:
+      - gofmt -s -w {{ .SOURCES }}
+
+  vet:
+    desc: Run vet linting
+    cmds:
+      - go vet {{ .PACKAGES }}
+
+  lint:
+    desc: Run revive linting
+    cmds:
+      - for PKG in {{ .PACKAGES }}; do go tool github.com/mgechev/revive -config revive.toml -set_exit_status $PKG || exit 1; done;
+
+  golangci:
+    desc: Run golangci linter
+    cmds:
+      - go tool github.com/golangci/golangci-lint/cmd/golangci-lint run ./...
+
+  generate:
+    desc: Generate code
+    cmds:
+      - go generate {{ .PACKAGES }}
+
+  test:
+    desc: Run tests
+    cmds:
+      - go test -coverprofile coverage.out {{ .PACKAGES }}
+
+  build:
+    desc: Build artifacts
+    cmds:
+      - go build -v
+          -tags 'netgo'
+          -ldflags '-s -w -extldflags "-static"'
+          -o /dev/null
+          ./...
+    env:
+      CGO_ENABLED: "0"
+
+...
