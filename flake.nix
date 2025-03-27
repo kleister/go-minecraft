@@ -55,8 +55,6 @@
           devenv = {
             shells = {
               default = {
-                name = "go-minecraft";
-
                 git-hooks = {
                   hooks = {
                     nixfmt-rfc-style = {
