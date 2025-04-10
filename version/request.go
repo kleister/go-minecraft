@@ -33,7 +33,7 @@ func FromURL(path string) (Response, error) {
 		return Response{}, errors.Wrap(err, "failed to fetch versions")
 	}
 
-	defer resp.Body.Close()
+	defer func() { _ = resp.Body.Close() }()
 
 	body, err := io.ReadAll(resp.Body)
 
