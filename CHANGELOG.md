@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/kleister/go-minecraft/compare/v1.0.0...v1.1.0) (2025-04-14)
+
+
+### Features
+
+* upgrade revive and golangci-lint and make lint happy ([1f96d6a](https://github.com/kleister/go-minecraft/commit/1f96d6a8be6b57339d16caedf0f3219cc8789871))
+
 ## [1.0.0](https://github.com/kleister/go-minecraft/compare/v0.2.1...v1.0.0) (2024-06-05)
 
 
