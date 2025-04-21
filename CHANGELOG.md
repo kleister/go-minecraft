@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.2.0](https://github.com/kleister/go-minecraft/compare/v1.1.0...v1.2.0) (2025-04-21)
+
+
+### Features
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.1.1 ([#61](https://github.com/kleister/go-minecraft/issues/61)) ([8d4637f](https://github.com/kleister/go-minecraft/commit/8d4637f898d943987839b6f43cc756caa574c127))
+* **deps:** update module github.com/mgechev/revive to v1.9.0 ([#59](https://github.com/kleister/go-minecraft/issues/59)) ([d55df32](https://github.com/kleister/go-minecraft/commit/d55df326950964f25125c84f29b0b28d638649d0))
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.1.2 ([#62](https://github.com/kleister/go-minecraft/issues/62)) ([c0b46f9](https://github.com/kleister/go-minecraft/commit/c0b46f9de7f2e8a372bdf102196cc072ca243630))
+
 ## [1.1.0](https://github.com/kleister/go-minecraft/compare/v1.0.0...v1.1.0) (2025-04-14)
 
 
