@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/kleister/go-minecraft/compare/v1.2.2...v1.3.0) (2025-06-02)
+
+
+### Features
+
+* **deps:** update module github.com/mgechev/revive to v1.10.0 ([#65](https://github.com/kleister/go-minecraft/issues/65)) ([550a241](https://github.com/kleister/go-minecraft/commit/550a241b05435a883567a279cb72903ca34cf01b))
+
 ## [1.2.2](https://github.com/kleister/go-minecraft/compare/v1.2.1...v1.2.2) (2025-05-05)
 
 
