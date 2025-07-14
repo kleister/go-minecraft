@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.5.0](https://github.com/kleister/go-minecraft/compare/v1.4.0...v1.5.0) (2025-07-14)
+
+
+### Features
+
+* **deps:** update module github.com/mgechev/revive to v1.11.0 ([#70](https://github.com/kleister/go-minecraft/issues/70)) ([324dc2b](https://github.com/kleister/go-minecraft/commit/324dc2bd232d9e5a2047a36704eebdb2af83ce6d))
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.2.2 ([#69](https://github.com/kleister/go-minecraft/issues/69)) ([f3278d4](https://github.com/kleister/go-minecraft/commit/f3278d4a4dd678394eed1d812bf5b9d0a2bd68a2))
+
 ## [1.4.0](https://github.com/kleister/go-minecraft/compare/v1.3.0...v1.4.0) (2025-06-30)
 
 
