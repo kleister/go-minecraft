@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.1](https://github.com/kleister/go-minecraft/compare/v1.6.0...v1.6.1) (2025-08-04)
+
+
+### Bugfixes
+
+* **deps:** update module github.com/golangci/golangci-lint/v2 to v2.3.1 ([#72](https://github.com/kleister/go-minecraft/issues/72)) ([8f7c2c5](https://github.com/kleister/go-minecraft/commit/8f7c2c5c5f18946045e4fc58c9de8bf6fdcd2425))
+
 ## [1.6.0](https://github.com/kleister/go-minecraft/compare/v1.5.0...v1.6.0) (2025-07-28)
 
 
