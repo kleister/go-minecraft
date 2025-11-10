@@ -16,15 +16,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Generate token
+        id: token
+        uses: tibdex/github-app-token@v2
+        with:
+          app_id: ${{ secrets.TOKEN_EXCHANGE_APP }}
+          installation_retrieval_mode: id
+          installation_retrieval_payload: ${{ secrets.TOKEN_EXCHANGE_INSTALL }}
+          private_key: ${{ secrets.TOKEN_EXCHANGE_KEY }}
+          permissions: >-
+            {"contents": "write", "pull_requests": "write", "issues": "write"}
+
       - name: Checkout source
         uses: actions/checkout@v5
         with:
-          token: ${{ secrets.BOT_ACCESS_TOKEN }}
+          token: ${{ steps.token.outputs.token }}
 
-      - name: Setup nodejs
-        uses: actions/setup-node@v6
-        with:
-          node-version: 24.x
+      - name: Write buildtime
+        run: date >| .github/RELEASE
 
       - name: Install releaser
         run: |
@@ -36,11 +45,8 @@ jobs:
 
       - name: Run releaser
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.token.outputs.token }}
         run: semantic-release
-
-      - name: Write buildtime
-        run: date >| .github/RELEASE
 
       - name: Update repo
         run: git pull --rebase --autostash

@@ -114,7 +114,8 @@
             {
                 "message": "chore: release ${nextRelease.version}",
                 "assets": [
-                    "CHANGELOG.md"
+                    "CHANGELOG.md",
+                    ".github/RELEASE"
                 ]
             }
         ],
