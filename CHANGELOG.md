@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.8.0](https://github.com/kleister/go-minecraft/compare/v1.7.1...v1.8.0) (2025-12-08)
+
+
+### Features
+
+* **minor:** update module github.com/golangci/golangci-lint/v2 to v2.7.0 ([#93](https://github.com/kleister/go-minecraft/issues/93)) ([3aacf87](https://github.com/kleister/go-minecraft/commit/3aacf877adf413d2a6dbc2d3236368ff1e8eeb37))
+
 ## [1.7.1](https://github.com/kleister/go-minecraft/compare/v1.7.0...v1.7.1) (2025-11-17)
 
 
