@@ -1,9 +1,10 @@
 ---
+# yaml-language-server: $schema=https://taskfile.dev/schema.json
 version: "3.40"
 
 vars:
   SOURCES:
-    sh: find . -name "*.go" -type f -not -path "./.devenv/*" -not -path "./.direnv/*" | xargs echo
+    sh: find . -name "*.go" -type f | xargs echo
   PACKAGES:
     sh: go list ./... | xargs echo
 
@@ -15,16 +16,25 @@ tasks:
 
   fmt:
     desc: Run standard formatter
+    vars:
+      SOURCES:
+        sh: find . -name "*.go" -type f | xargs echo
     cmds:
       - gofmt -s -w {{ .SOURCES }}
 
   vet:
     desc: Run vet linting
+    vars:
+      PACKAGES:
+        sh: go list ./... | xargs echo
     cmds:
       - go vet {{ .PACKAGES }}
 
   lint:
     desc: Run revive linting
+    vars:
+      PACKAGES:
+        sh: go list ./... | xargs echo
     cmds:
       - for PKG in {{ .PACKAGES }}; do go tool github.com/mgechev/revive -config revive.toml -set_exit_status $PKG || exit 1; done;
 
@@ -35,11 +45,17 @@ tasks:
 
   generate:
     desc: Generate code
+    vars:
+      PACKAGES:
+        sh: go list ./... | xargs echo
     cmds:
       - go generate {{ .PACKAGES }}
 
   test:
     desc: Run tests
+    vars:
+      PACKAGES:
+        sh: go list ./... | xargs echo
     cmds:
       - go test -coverprofile coverage.out {{ .PACKAGES }}
 
