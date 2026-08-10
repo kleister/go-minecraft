@@ -1,5 +1,15 @@
 # Changelog
 
+## [1.9.0](https://github.com/kleister/go-minecraft/compare/v1.8.0...v1.9.0) (2026-08-10)
+
+### Features
+
+* restructure repo and build processes ([b29849d](https://github.com/kleister/go-minecraft/commit/b29849d1a0a1c26f22e2b404767478c41354b845))
+
+### Dependencies
+
+* **minor:** update dependency golangci-lint to v2.12.2 ([#110](https://github.com/kleister/go-minecraft/issues/110)) ([4a31653](https://github.com/kleister/go-minecraft/commit/4a3165315f108e455a0cac51705b69a2b87d8935))
+
 ## [1.8.0](https://github.com/kleister/go-minecraft/compare/v1.7.1...v1.8.0) (2025-12-08)
 
 
