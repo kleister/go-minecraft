@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.9.1](https://github.com/kleister/go-minecraft/compare/v1.9.0...v1.9.1) (2026-08-17)
+
+### Dependencies
+
+* **patch:** update dependency go to v1.26.6 ([#114](https://github.com/kleister/go-minecraft/issues/114)) ([14408f3](https://github.com/kleister/go-minecraft/commit/14408f37006c5e4f9b404e91f855108a6f2d24a2))
+* **patch:** update dependency pre-commit to v4.6.2 ([#113](https://github.com/kleister/go-minecraft/issues/113)) ([c664736](https://github.com/kleister/go-minecraft/commit/c66473642429495e6785c426edf9f3db39fb7a2f))
+
 ## [1.9.0](https://github.com/kleister/go-minecraft/compare/v1.8.0...v1.9.0) (2026-08-10)
 
 ### Features
