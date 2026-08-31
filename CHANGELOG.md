@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.11.0](https://github.com/kleister/go-minecraft/compare/v1.10.0...v1.11.0) (2026-08-31)
+
+### Dependencies
+
+* **minor:** update dependency go to v1.27.0 ([#116](https://github.com/kleister/go-minecraft/issues/116)) ([3707dc0](https://github.com/kleister/go-minecraft/commit/3707dc02cf3ff18ec673ed46a82e457256668b5c))
+* **patch:** update dependency golangci-lint to v2.13.2 ([#120](https://github.com/kleister/go-minecraft/issues/120)) ([262f642](https://github.com/kleister/go-minecraft/commit/262f64221849efead1fe1b1a67096e69433b9def))
+
 ## [1.10.0](https://github.com/kleister/go-minecraft/compare/v1.9.1...v1.10.0) (2026-08-24)
 
 ### Dependencies
