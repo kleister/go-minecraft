@@ -1,5 +1,11 @@
 # Changelog
 
+## [1.11.1](https://github.com/kleister/go-minecraft/compare/v1.11.0...v1.11.1) (2026-09-07)
+
+### Dependencies
+
+* **patch:** update dependency go to v1.27.1 ([#122](https://github.com/kleister/go-minecraft/issues/122)) ([81ee2aa](https://github.com/kleister/go-minecraft/commit/81ee2aaac8172260f730166ae1a3af7e6c16e2e1))
+
 ## [1.11.0](https://github.com/kleister/go-minecraft/compare/v1.10.0...v1.11.0) (2026-08-31)
 
 ### Dependencies
