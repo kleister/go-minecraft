@@ -1,7 +1,7 @@
 #:schema https://mise.jdx.dev/schema/mise.json
 
 [tools]
-go = "1.27.3"
+go = "1.27.4"
 golangci-lint = "2.15.0"
 node = "26"
 prek = "0.5.10"
