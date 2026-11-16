@@ -4,7 +4,7 @@
 go = "1.27.4"
 golangci-lint = "2.15.0"
 node = "26"
-prek = "0.5.10"
+prek = "0.5.11"
 task = "3.54.0"
 
 "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint" = "2.15.0"
